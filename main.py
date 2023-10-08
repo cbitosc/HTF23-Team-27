@@ -21,7 +21,7 @@ ALLOWED_EXTENSIONS = {'pdf', 'docx'}
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-OPENAI_API_KEY = "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"
+OPENAI_API_KEY = "sk-ApCAAfUN1JyI6zo6vNOXT3BlbkFJxpHzWY4vEjzxx********"
 os.environ["OPENAI_API_KEY"] = "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"
 
 def chat_gpt4(prompt):

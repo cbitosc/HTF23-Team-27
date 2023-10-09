@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Info</title>
+<style>
+     body{
+        background-image: url(static/2109.jpeg);
+        background-repeat: repeat;
+        background-size: cover;
+        color: #444;
+        font-family: Arial, sans-serif;
+     }
+     .center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 25vh;
+        font-size: 3em;
+     }
+     .below {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        padding: 20px;
+     }
+     .below div {
+        font-size: 1em;
+     }
+     h1{
+        text-align: center;
+        padding: 20px;
+        color: rgba(255, 255, 255, 1);
+
+     }
+	 h2
+	 {
+        text-align: center;
+        padding: 20px;
+        color: rgba(255, 255, 255, 1);
+
+     }
+     button {
+    border: none;
+    color: white; /* Set text color to white */
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    display: block;
+    margin-bottom: 10px;
+	background-color: rgba(0, 0, 0, 0.1);
+}
+
+     button:hover {
+        background-color: lightgreen;
+        color: white;
+     }
+     section{
+        margin: 10px;
+     }
+</style>
+<script>
+    function copyToClipboard(text) {
+        var temp = document.createElement('textarea');
+        temp.value = text;
+        document.body.appendChild(temp);
+        temp.select();
+        document.execCommand('copy');
+        document.body.removeChild(temp);
+    }
+</script>
+</head>
+<body>
+    <h1>Score: {{ score }}</h1>
+
+<section>
+   <h2>LeetCode Questions</h2>
+{% for question in leetcode_questions %}
+<button type="button" onclick="copyToClipboard('{{ question }}')">{{ question }}</button>
+{% endfor %}
+</section>
+
+<section>
+<h2>Interview Questions</h2>
+{% for question in interview_questions %}
+<button type="button" onclick="copyToClipboard('{{ question }}')">{{ question }}</button>
+{% endfor %}
+</section>
+
+<section>
+<h2>User Profiles</h2>
+{% for profile in user_profiles %}
+<button type="button" onclick="copyToClipboard('{{ profile }}')">{{ profile }}</button>
+{% endfor %}
+</section>
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>File Upload</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('static/back.jpg'); /* Change 'background.jpg' to the path of your image */
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+      .container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column; /* Add this line */
+    align-items: center;
+    justify-content: center;
+    background-image: linear-gradient(to right, rgba(0,0,0,0.3), rgba(0,0,0,0.5)), url('static/back.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+        form {
+    background-color: rgba(255,255,255,0.7); /* Here, 0.8 is the opacity, you can adjust it to your requirements, just make sure the value is between 0.0 (fully transparent) and 1.0 (fully opaque) */
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+        input[type="file"],input[type="text"] {
+            margin-top: 10px;
+            padding: 5px;
+            border-radius: 15px;
+        }
+
+        input[type="submit"], .btn {
+            background-color: #FFE5B4;
+            font-size: 16px;
+            color: #000000;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        input[type="submit"]:hover,
+        .btn:hover {
+            background-color: #2980b9;
+        }
+        .company-field {
+    margin-left: 150px;
+}
+.company-field1 {
+    margin-left: 190px;
+}
+.company-field2 {
+    margin-left: 240px;
+}
+.company-field3 {
+    margin-left: 50px;
+}
+        .btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+        }
+
+        label {
+            color: #333;
+            font-size: 1.2em;
+        }
+        #loading {
+    width: 100%;
+    height: 100vh;
+    background: #fff url(mundu.jpg) no-repeat center center;
+    position: fixed;
+    z-index: 9999;
+}
+#title {
+            text-align: center;
+            color: #fff;
+            font-family: 'Brush Script MT', cursive;
+            font-size: 170px;
+            font-weight: bold;
+            margin-top: 20px; /* Add top margin */
+            margin-bottom: 50px; /* Add bottom margin */
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <div class="container">
+         <h1 id="title">Resume Assist</h1>
+        {% with messages = get_flashed_messages() %}
+            {% if messages%}
+                <div class="alert">
+                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                    {{ messages[0] }}
+                </div>
+            {% endif %}
+        {% endwith %}
+        <form method="POST" enctype="multipart/form-data">
+            <div class="company-field3">
+                <label for="file1">Upload Resume Here (PDF or DOCX):</label>
+                <input type="file" id="file1" name="file1" accept=".pdf, .docx">
+            </div>
+            <div class="company-field3">
+                <label for="file2">Upload JD Here (PDF or DOCX):</label>
+                <input type="file" id="file2" name="file2" accept=".pdf, .docx">
+            </div>
+            <div class="company-field">
+    <label for="company">Company:</label>
+    <input type="text" id="company" name="company">
+</div>
+            <div class="company-field1">
+    <label for="role">Role:</label>
+    <input type="text" id="role" name="role">
+</div>
+             <div class="company-field2">
+    <input type="submit" value="Upload">
+</div>
+        </form>
+    <button onclick="window.location.href='/chat_bot'" class="btn btn-primary">Go to Chatbot</button>
+    </div>
+    <div id="loading">
+    <img src="{{ url_for('static', filename='mundu.jpg') }}" alt="loading...">
+</div>
+<script>$(window).on("load", function() {
+    $('#loading').fadeOut('slow', function() {
+        $(this).remove();
+    });
+});</script>
+</body>
+</html>
